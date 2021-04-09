@@ -11,7 +11,7 @@ namespace WeBooking.Controllers
 {
     public class BookingController : ApiController
     {
-        BookingBO bookingBO;
+        private readonly BookingBO bookingBO;
         public BookingController()
         {
             bookingBO = new BookingBO();
@@ -19,14 +19,17 @@ namespace WeBooking.Controllers
 
         [Route("api/booking/status")]
         [HttpGet]
-        public string GetRoomAvailability()
+        public string GetRoomAvailability([FromBody] DateTime dateTime)
         {
             //TODO
-            bool isAvailable = bookingBO.GetRoomAvailability();
-            if (isAvailable) 
-                return "Available";
-
-            return "Unavaile";
+            if (bookingBO.IsRoomAvailable(dateTime))
+            {
+                return "Room available for this date";
+            }
+            else
+            {
+                return "Room is unavailable for this date";
+            }
         }
 
         [Route("api/booking/reservation")]
