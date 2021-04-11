@@ -19,10 +19,10 @@ namespace WeBooking.Controllers
 
         [Route("api/booking/status")]
         [HttpGet]
-        public string GetRoomAvailability([FromBody] DateTime dateTime)
+        public string GetRoomAvailability([FromBody] DateTime desiredStartDate, DateTime desiredEndDate)
         {
             //TODO
-            if (bookingBO.IsRoomAvailable(dateTime))
+            if (bookingBO.IsRoomAvailable(desiredStartDate, desiredEndDate))
             {
                 return "Room available for this date";
             }
@@ -42,6 +42,7 @@ namespace WeBooking.Controllers
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
+
             //TODO
         }
 
