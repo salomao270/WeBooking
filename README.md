@@ -1,5 +1,5 @@
 <h1># WeBooking</h1>
-<h2> Web API project to booking a room in a hotel based on some datetime business rules.</h2>
+<h2> Web API project to book a room in a hotel based on some datetime business rules.</h2>
 <br/>
 
 <h2> 1) UNIT TEST (EXTRA) </h2>
