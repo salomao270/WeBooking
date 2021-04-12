@@ -18,7 +18,7 @@ namespace WeBooking.Business
         public BookingBO()
         {
             //MOCK FOR TESTS IN BROWSER BY API
-
+            //Customer1 = new Customer();
             //Customer1.Id = 1;
             //Customer1.Name = "Justin Trudeau";
             //Customer1.Phone = "+1 1212-3434";
@@ -26,6 +26,7 @@ namespace WeBooking.Business
             //Customer1.DocumentNumber = 123456;
             //Customer1.DateOfBirth = new DateTime(1971, 12, 25);
 
+            //Customer2 = new Customer();
             //Customer2.Id = 2;
             //Customer2.Name = "Joseph Macron";
             //Customer2.Phone = "+1 9000-9000";
@@ -33,6 +34,7 @@ namespace WeBooking.Business
             //Customer2.DocumentNumber = 67890;
             //Customer2.DateOfBirth = new DateTime(1980, 04, 02);
 
+            //Customer3 = new Customer();
             //Customer3.Id = 3;
             //Customer3.Name = "Mary Williams";
             //Customer3.Phone = "+1 8000-8000";

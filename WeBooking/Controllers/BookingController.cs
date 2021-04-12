@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+//using System.Web.Mvc;
 using WeBooking.Business;
 using WeBooking.Models;
 
@@ -17,30 +18,47 @@ namespace WeBooking.Controllers
             bookingBO = new BookingBO();
         }
 
-        [Route("api/booking/status")]
+        [Route("api/booking/listreservations")]
         [HttpGet]
-        public string GetRoomAvailability([FromBody] DateTime desiredStartDate, DateTime desiredEndDate)
+        public IEnumerable<Reservation> GetReservations()
         {
-            //TODO
-            if (bookingBO.IsRoomAvailable(desiredStartDate, desiredEndDate))
+            return bookingBO.GetReservations();
+        }
+
+        [Route("api/booking/roomstatus")]
+        [HttpGet]
+        public IHttpActionResult GetRoomStatus([FromBody] Reservation reservation)
+        {
+            if (reservation == null)
             {
-                return "Room available for this date";
+                return NotFound();
+            }
+
+            if (bookingBO.IsRoomAvailable(reservation.StartDate, reservation.EndDate))
+            {
+                return Ok("The room is avaible for this date!");
             }
             else
             {
-                return "Room is unavailable for this date";
+                return Ok("The room is NOT avaible for this date! Please choose another date");
             }
         }
 
         [Route("api/booking/reservation")]
         [HttpPost]
-        public void BookReservation([FromBody] Reservation reservation)
+        public IHttpActionResult Post([FromBody] Reservation reservation)
         {
-            bookingBO.Reservations.Add(reservation);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+            var result = bookingBO.CreateReservation(reservation.Customer, reservation.StartDate, reservation.EndDate);
+
+            return Ok(result.Message);
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] Reservation reservation)
         {
 
             //TODO
@@ -50,6 +68,8 @@ namespace WeBooking.Controllers
         public void Delete(int id)
         {
             //TODO
+            Reservation reservationToRemove = bookingBO.Reservations.Find(r => r.Id.Equals(id));
+            bookingBO.Reservations.Remove(reservationToRemove);
         }
     }
 }
