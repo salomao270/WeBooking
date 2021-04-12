@@ -1,6 +1,5 @@
 <h1># WeBooking</h1>
 <h2> Web API project to book a room in a hotel based on some datetime business rules.</h2>
-<br/>
 
 <h2> 1) UNIT TEST (EXTRA) </h2>
 <h4>It was also developped a Unit Test project using MS Test to assure that business rules meets the requirements.</h4>
@@ -8,6 +7,8 @@
 ![unitTests](https://user-images.githubusercontent.com/9018950/114437568-1934e600-9b9d-11eb-9263-a92747aa6d95.png)
 
 <br/>
+
+<h2>Methods tested using Postman</h2>
 
 <h2> 2) GET - Reservations (EXTRA) </h2>
 <b>Note: As this app doesn't have database to store data, this get reservation method will works with mock code on BookingBO.cs constructor.</b>
