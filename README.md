@@ -97,9 +97,8 @@ URL example - https://localhost:44314/api/booking/changereservation
 
 <br/>
 
-
 <h2> 6) DELETE </h2>
-<br/><br/>
+<br/>
 URL example - https://localhost:44314/api/booking/delete?id=3
 <br/> Parameter: The id number of the Reservation.
 <br/>
