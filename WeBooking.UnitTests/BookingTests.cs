@@ -20,7 +20,7 @@ namespace WeBooking.UnitTests
         [TestInitialize]
         public void Initializer()
         {
-            //MOCK FOR UNIT TESTS
+            // UNCOMMENT THIS MOCK FOR UNIT TESTS
             booking = new BookingBO();
             reservations = new List<Reservation>();
 
@@ -108,8 +108,8 @@ namespace WeBooking.UnitTests
         {
             //Arrange
             Customer customer = new Customer() { Name = "Justin Trudeau", Id = 6 };
-            DateTime desiredStartDate = new DateTime(2021, 05, 01);
-            DateTime desiredEndDate = new DateTime(2021, 05, 03);
+            DateTime desiredStartDate = new DateTime(2021, 04, 01);
+            DateTime desiredEndDate = new DateTime(2021, 04, 03);
 
             //Act
             var result = booking.CreateReservation(customer, desiredStartDate, desiredEndDate);

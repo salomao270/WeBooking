@@ -17,37 +17,37 @@ namespace WeBooking.Business
 
         public BookingBO()
         {
-            //MOCK FOR TESTS IN BROWSER BY API
-            //Customer1 = new Customer();
-            //Customer1.Id = 1;
-            //Customer1.Name = "Justin Trudeau";
-            //Customer1.Phone = "+1 1212-3434";
-            //Customer1.Email = "justin@email.com";
-            //Customer1.DocumentNumber = 123456;
-            //Customer1.DateOfBirth = new DateTime(1971, 12, 25);
+            // UNCOMMENT THIS MOCK FOR TESTS IN BROWSER VIA API.
+            Customer1 = new Customer();
+            Customer1.Id = 1;
+            Customer1.Name = "Justin Trudeau";
+            Customer1.Phone = "+1 1212-3434";
+            Customer1.Email = "justin@email.com";
+            Customer1.DocumentNumber = 123456;
+            Customer1.DateOfBirth = new DateTime(1971, 12, 25);
 
-            //Customer2 = new Customer();
-            //Customer2.Id = 2;
-            //Customer2.Name = "Joseph Macron";
-            //Customer2.Phone = "+1 9000-9000";
-            //Customer2.Email = "joseph@email.com";
-            //Customer2.DocumentNumber = 67890;
-            //Customer2.DateOfBirth = new DateTime(1980, 04, 02);
+            Customer2 = new Customer();
+            Customer2.Id = 2;
+            Customer2.Name = "Joseph Macron";
+            Customer2.Phone = "+1 9000-9000";
+            Customer2.Email = "joseph@email.com";
+            Customer2.DocumentNumber = 67890;
+            Customer2.DateOfBirth = new DateTime(1980, 04, 02);
 
-            //Customer3 = new Customer();
-            //Customer3.Id = 3;
-            //Customer3.Name = "Mary Williams";
-            //Customer3.Phone = "+1 8000-8000";
-            //Customer3.Email = "joseph@email.com";
-            //Customer3.DocumentNumber = 98765;
-            //Customer3.DateOfBirth = new DateTime(1992, 02, 10);
+            Customer3 = new Customer();
+            Customer3.Id = 3;
+            Customer3.Name = "Mary Williams";
+            Customer3.Phone = "+1 8000-8000";
+            Customer3.Email = "joseph@email.com";
+            Customer3.DocumentNumber = 98765;
+            Customer3.DateOfBirth = new DateTime(1992, 02, 10);
 
-            //Room = new Room() { Id = 1 };
+            Room = new Room() { Id = 1 };
 
-            //Reservations = new List<Reservation>();
-            //Reservations.Add(new Reservation() { Id = 1, Customer = Customer1, Room = Room, StartDate = new DateTime(2021, 04, 07), EndDate = new DateTime(2021, 04, 08) });
-            //Reservations.Add(new Reservation() { Id = 2, Customer = Customer2, Room = Room, StartDate = new DateTime(2021, 04, 09), EndDate = new DateTime(2021, 04, 10) });
-            //Reservations.Add(new Reservation() { Id = 3, Customer = Customer3, Room = Room, StartDate = new DateTime(2021, 04, 11), EndDate = new DateTime(2021, 04, 13) });
+            Reservations = new List<Reservation>();
+            Reservations.Add(new Reservation() { Id = 1, Customer = Customer1, Room = Room, StartDate = new DateTime(2021, 04, 07), EndDate = new DateTime(2021, 04, 08) });
+            Reservations.Add(new Reservation() { Id = 2, Customer = Customer2, Room = Room, StartDate = new DateTime(2021, 04, 09), EndDate = new DateTime(2021, 04, 10) });
+            Reservations.Add(new Reservation() { Id = 3, Customer = Customer3, Room = Room, StartDate = new DateTime(2021, 04, 11), EndDate = new DateTime(2021, 04, 13) });
         }
 
         public IEnumerable<Reservation> GetReservations()
@@ -63,9 +63,13 @@ namespace WeBooking.Business
         public ResponseContainer CreateReservation(Customer customer, DateTime desiredStartDate, DateTime desiredEndDate)
         {
             ResponseContainer response = new ResponseContainer();
+
             try
             {
-                if (customer != null && desiredStartDate != null && desiredEndDate != null)
+                var stayDateDuration = (desiredEndDate - desiredStartDate).TotalDays;
+                var IsStayEarlyDateLessThanAMonth = desiredStartDate <= DateTime.Today.AddDays(30);
+
+                if (stayDateDuration >= 0 && stayDateDuration <= 3 && IsStayEarlyDateLessThanAMonth == true)
                 {
                     if (IsRoomAvailable(desiredStartDate, desiredEndDate))
                     {
@@ -88,7 +92,7 @@ namespace WeBooking.Business
                 }
                 else
                 {
-                    response.Message = "Please enter a valid information";
+                    response.Message = "The stay can’t be longer than 3 days and can’t be reserved more than 30 days in advance.";
                 }
             }
             catch (Exception)
@@ -119,11 +123,18 @@ namespace WeBooking.Business
         public ResponseContainer RemoveReservation(Reservation reservationToRemove)
         {
             ResponseContainer response = new ResponseContainer();
-            if (reservationToRemove != null)
+
+            if(reservationToRemove == null)
             {
-                Reservations.Remove(reservationToRemove);
-                response.Message = "This reservation has been successfuly canceled";
+                response.Message = "This reservation was not found, please verify your reservation code and try again.";
             }
+
+            bool isReservationRemoved = Reservations.Remove(reservationToRemove);
+            
+            response.Message = isReservationRemoved ? 
+                "This reservation has been successfuly canceled." 
+                : "It occured an error, please try again.";
+            
             return response;            
         }
     }
