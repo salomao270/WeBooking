@@ -134,7 +134,7 @@ namespace WeBooking.UnitTests
         }
 
         [TestMethod]
-        public void UpdateReservationDate_WhenCustomerChangeEndDateBooked_UpdateDateBooked()
+        public void UpdateReservationDate_WhenCustomerChangeDateBooked_UpdateDateBooked()
         {
             //Arrange
             DateTime changeStartDate = new DateTime(2021, 05, 10);

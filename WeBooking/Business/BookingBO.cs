@@ -78,8 +78,8 @@ namespace WeBooking.Business
                             Id = Reservations.Count + 1,
                             Customer = customer,
                             Room = Room,
-                            StartDate = desiredStartDate,
-                            EndDate = desiredEndDate
+                            StartDate = desiredStartDate.AddDays(1),
+                            EndDate = desiredEndDate.AddDays(1)
                         };
                         Reservations.Add(Reservation);
                         response.Content = Reservation;
