@@ -20,7 +20,7 @@ URL example - https://localhost:44314/api/booking/reservations
 <br/>
 
 <h2> 3) GET - Room availability </h2>
-<b>Note: Pass the <Start date> and <End date> to know if this date range is available or already booked. Remembering the requirement - "All reservations start at least the next day of booking". </b> <br/><br/>
+<b>Note: Pass the Start date and End date to know if this date range is available or already booked. Remembering the requirement - "All reservations start at least the next day of booking". </b> <br/><br/>
 URL example - https://localhost:44314/api/booking/roomstatus
 <br/> Parameter: JSON
 <br/>
@@ -99,7 +99,7 @@ URL example - https://localhost:44314/api/booking/changereservation
 
 
 <h2> 6) DELETE </h2>
-<b>Note: Pass the Start date and End date to know if this date range is available or already booked. Remembering the requirement - "All reservations start at least the next day of booking". </b> <br/><br/>
+<br/><br/>
 URL example - https://localhost:44314/api/booking/delete?id=3
 <br/> Parameter: The id number of the Reservation.
 <br/><br/>
