@@ -36,7 +36,7 @@ URL example - https://localhost:44314/api/booking/roomstatus
 <h2> 4) POST - a reservation in a free date </h2>
 <b>Note: The register is saved temporary cause it doesnt have database.</b> <br/><br/>
 URL example - https://localhost:44314/api/booking/bookreservation
-<br/> Parameter: Start date and End date to see the availabiLike bellow
+<br/> Parameter: JSON:
 <br/><br/>
 
 ```json
