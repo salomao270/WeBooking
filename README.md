@@ -10,7 +10,7 @@
 <br/>
 
 <h2> 2) GET - Reservations (EXTRA) </h2>
-<b>Note: As this app doesn't have database to store data. this get reservation method will works after uncomment mock code on BookingBO.cs constructor.</b>
+<b>Note: As this app doesn't have database to store data, this get reservation method will works with mock code on BookingBO.cs constructor.</b>
 <br/><br/>
 URL example - https://localhost:44314/api/booking/reservations
 <br/> Parameter: It is not necessarry.
